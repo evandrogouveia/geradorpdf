@@ -1,0 +1,90 @@
+<ng-sidebar-container>
+
+  <!-- A sidebar -->
+  <ng-sidebar [(opened)]="_opened" [mode]='_mode'>
+    <div class="text-center w-100" style="border-bottom: 1px solid #fff;">
+      <a class="nav-link" routerLink="/login" style="outline: none">
+        <img src="assets/img/logo.png" alt="logo" class="w-75  mb-2 pb-2 pt-3 logo">
+      </a>
+    </div>
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div class="btn-group w-100" dropdown>
+        <span id="button-basic" dropdownToggle aria-controls="dropdown-basic" class="btn-sidebar p-3 w-100"
+          [ngClass]="tab == 1 ? 'active-sidebar' : ''"><i class="fas fa-file-signature"></i>&nbsp; Pré Lingado
+        </span>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li class="text-center" role="menuitem"><a class="dropdown-item" href="#">Escolha o idioma</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem" class="d-flex justify-content-center">
+            <div class="mt-2" *ngFor="let lang of translate.getLangs()">
+              <input [value]="lang" [checked]="lang === translate.currentLang" #langSelect
+                (change)="translate.use(langSelect.value)" type="radio" name="prelingado" id="prelingado-{{lang}}"
+                checked>
+              <label (click)="setTab(1)" for="prelingado-{{ lang }}" class="pr-2"><img class="w-100"
+                  [src]="lang === 'En' ? 'assets/img/icone-en.jpg' : 'assets/img/icone-pt.jpg'"></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- FIM PRÉ LINGADO -->
+      <div class="btn-group w-100" dropdown>
+        <span id="button-basic" dropdownToggle aria-controls="dropdown-basic" class="btn-sidebar p-3 w-100"
+          [ngClass]="tab == 2 ? 'active-sidebar' : ''"><i class="fas fa-file-signature"></i>&nbsp; Elevação</span>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li class="text-center" role="menuitem"><a class="dropdown-item" href="#">Escolha o idioma</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem" class="d-flex justify-content-center">
+            <div class="mt-2" *ngFor="let lang of translate.getLangs()">
+              <input [value]="lang" [checked]="lang === translate.currentLang" #langSelect
+                (change)="translate.use(langSelect.value)" type="radio" name="elevacao" id="elevacao-{{lang}}" checked>
+              <label (click)="setTab(2)" for="elevacao-{{lang}}" class="pr-2"><img class="w-100"
+                  [src]="lang === 'Pt' ? 'assets/img/icone-pt.jpg' : 'assets/img/icone-en.jpg'"></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- FIM ELEVAÇÃO -->
+      <div class="btn-group w-100" dropdown>
+        <span id="button-basic" dropdownToggle aria-controls="dropdown-basic" class="btn-sidebar p-3 w-100"
+          [ngClass]="tab == 3 ? 'active-sidebar' : ''"><i class="fas fa-file-signature"></i>&nbsp; Amarração</span>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li class="text-center" role="menuitem"><a class="dropdown-item" href="#">Escolha o idioma</a></li>
+          <li class="divider dropdown-divider"></li>
+          <li role="menuitem" class="d-flex justify-content-center">
+            <div class="mt-2" *ngFor="let lang of translate.getLangs()">
+              <input [value]="lang" [checked]="lang === translate.currentLang" #langSelect
+                (change)="translate.use(langSelect.value)" type="radio" name="amarracao" id="amarracao-{{lang}}"
+                checked>
+              <label (click)="setTab(3)" for="amarracao-{{lang}}" class="pr-2"><img class="w-100"
+                  [src]="lang === 'Pt' ? 'assets/img/icone-pt.jpg' : 'assets/img/icone-en.jpg'"></label>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- FIM AMARRAÇÃO -->
+      <div class="btn-group w-100" dropdown>
+        <span (click)="setTab(4)" id="button-basic" class="btn-sidebar p-3 w-100"
+          [ngClass]="tab == 4 ? 'active-sidebar' : ''"><i class="fas fa-user-friends"></i>&nbsp; Clientes</span>
+      </div>
+      <!-- FIM CLIENTES -->
+      <div class="btn-group w-100" dropdown>
+          <span (click)="setTab(5)" id="button-basic" class="btn-sidebar p-3 w-100"
+            [ngClass]="tab == 5 ? 'active-sidebar' : ''"><i class="far fa-list-alt"></i>&nbsp; Produtos</span>
+        </div>
+        <!-- FIM CLIENTES -->
+    </div>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content>
+    <ng-container [ngSwitch]="tab">
+      <app-pre-lingado *ngSwitchCase="1"></app-pre-lingado>
+      <app-elevacao *ngSwitchCase="2"></app-elevacao>
+      <app-amarracao *ngSwitchCase="3"></app-amarracao>
+      <app-clientes *ngSwitchCase="4"></app-clientes>
+      <app-produtos *ngSwitchCase="5"></app-produtos>
+    </ng-container>
+  </div>
+
+</ng-sidebar-container>
+

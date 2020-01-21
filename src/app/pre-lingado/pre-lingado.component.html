@@ -1,0 +1,160 @@
+<div class="container">
+  <div class="col-md-12 col-lg-12">
+    <div class="content-border text-center">
+      <h3 class="font-weight-bold">{{ 'INDEX.titulo-certificado' | translate }}</h3>
+      <h1>{{ 'INDEX.subtitulo-certificado' | translate }}</h1>
+
+      <form (ngSubmit)="onSubmit()"> 
+        <div class="form-row">
+          <div class="col-md-3"></div>
+          <div class="form-group col-md-3">
+            <input [(ngModel)]="certificado.numero_certificado" type="text" name="numero_certificado"
+              class="form-control" id="numero_certificado" placeholder="Nº">
+          </div>
+          <div class="form-group col-md-3">
+            <input [(ngModel)]="certificado.data_certificado" type="date" name="data_certificado" class="form-control"
+              id="data_certificado" placeholder="data">
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <input style="font-size:15px;" type="text" class="form-control text-center" id="inputAddress"
+              placeholder="Logicargo Indústria e Comércio LTDA - CNPJ: 07.587.953/0001-80" disabled>
+          </div>
+          <div class="form-group col-md-6">
+            <input type="text" class="form-control text-center" id="inputAddress"
+              placeholder="{{'INDEX.registro' | translate}} CREA/RJ: 2014200927" disabled>
+          </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6" >
+              <select [(ngModel)]="certificado.cnpj_cliente" name="cnpj_cliente" (change)="eventCliente($event)" class="form-control" id="exampleFormControlSelect1">
+                <option [ngValue]="undefined" selected>Cnpj</option>
+                <option *ngFor="let c of cliente" value="{{c.nome}}">{{ c.cnpj }}</option>
+              </select>
+            </div>
+            <div class="form-group col-md-6">
+              <input [(ngModel)]="certificado.nome_cliente" name="nome_cliente" type="text" class="form-control" id="inputAddress" placeholder="{{'INDEX.cliente' | translate}}"
+                value="{{certificado.nome_cliente}}" disabled>
+            </div>
+          
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <select [(ngModel)]="certificado.codigo_produto" name="codigo_roduto" (change)="eventProduto($event)" class="form-control" id="exampleFormControlSelect1">
+              <option [ngValue]="undefined" selected>{{'INDEX.codigo-produto' | translate}}</option>
+              <option *ngFor="let p of produto" value="{{p.descricao}}">{{p.codigo}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-6">
+            <input #tipo name="certificado" type="text" class="form-control font-weight-bold" id="inputAddress"
+              placeholder="{{'INDEX.certificado' | translate}}" value="{{'INDEX.certificado' | translate}}" disabled>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="cuidados p-4 text-left">
+            {{'INDEX.descricao' | translate}}
+          </div>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="certificado.nota_fiscal" name="nota_fiscal" type="text" 
+          class="form-control" id="inputAddress" placeholder="{{'INDEX.notafiscal' | translate}}" value="{{certificado.nota_fiscal}}">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="certificado.descricao" name="descricao" type="text" class="form-control" id="inputAddress"
+            placeholder="{{'INDEX.descricao-produto' | translate}}" value="{{certificado.descricao}}" disabled>
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="certificado.quantidade" name="quantidade" type="text" class="form-control" id="inputAddress" 
+          placeholder="{{'INDEX.quantidade' | translate}}" value="{{certificado.quantidade}}">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="certificado.rastreabilidade" name="rastreabilidade" type="text" class="form-control" id="inputAddress"
+            placeholder="{{'INDEX.rastreabilidade' | translate}}" value="{{certificado.rastreabilidade}}">
+        </div>
+        <div class="form-group">
+          <textarea [(ngModel)]="certificado.observacao" name="observacao" class="form-control text-left pt-3 pb-0" rows="3"
+            placeholder="{{'INDEX.observacao' | translate}}"></textarea>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="inputAddress" placeholder="{{'INDEX.material' | translate}}"
+            disabled>
+        </div><br>
+        <div class="form-group">
+          <h4 class="font-weight-bold">{{'INDEX.formas-utilizacao' | translate}}</h4>
+        </div>
+
+        <table class="table table-bordered text-center">
+          <thead>
+            <tr>
+              <th scope="col" style="padding: 0;"></th>
+              <th scope="col" style="padding: 0 0 7px;">
+                {{'INDEX.utilizacao' | translate}}({{'INDEX.carga-trabalho' | translate}})</th>
+              <th scope="col" style="padding: 0;">
+                <select (change)="limpaCampos()" [(ngModel)]="certificado.fator_seguranca" class="form-control w-100"
+                  name="fator_seguranca" id="fator_seguranca">
+                  <option [ngValue]="undefined" selected>Selecione o fator</option>
+                  <option #opt value="5">{{'INDEX.fator-seguranca-5' | translate}}</option>
+                  <option #opt value="7">{{'INDEX.fator-seguranca-7' | translate}}</option>
+                </select>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="p-0 pt-1" scope="row">Vertical</td>
+              <td class="p-0"><input (keyup)="valor($event)" #cargavertical="ngModel" type="text"
+                  class="form-control w-100" placeholder="0 {{'INDEX.toneladas' | translate}}" required=""
+                  name="carga_vertical" id="carga_vertical" [(ngModel)]="certificado.carga_vertical"
+                  [disabled]="!certificado.fator_seguranca"></td>
+              <td class="p-0"><input [(ngModel)]="certificado.fator_vertical" type="text" class="form-control w-100"
+                  placeholder="0 {{'INDEX.toneladas' | translate}}" readonly="true" name="fator_vertical"
+                  id="fator_vertical" value="certificado.fator_vertical"></td>
+            </tr>
+            <tr>
+              <td class="p-0" scope="row">Basket(Cesto)</td>
+              <td class="p-0"><input [(ngModel)]="certificado.carga_basket" type="text" class="form-control w-100"
+                  placeholder="0 {{'INDEX.toneladas' | translate}}" readonly="true" name="carga_basket" id="carga_basket"
+                  value="certificado.carga_basket"></td>
+              <td class="p-0"><input [(ngModel)]="certificado.fator_basket" type="text" class="form-control w-100"
+                  placeholder="0 {{'INDEX.toneladas' | translate}}" readonly="true" name="fator_basket" id="fator_basket"
+                  value="certificado.fator_basket"></td>
+            </tr>
+            <tr>
+              <td class="p-0" scope="row">Chocker(Força)</td>
+              <td class="p-0"><input [(ngModel)]="certificado.carga_chocker" type="text" class="form-control w-100"
+                  placeholder="0 {{'INDEX.toneladas' | translate}}" readonly="true" name="carga_chocker"
+                  id="carga_chocker" value="certificado.carga_chocker"></td>
+              <td class="p-0"><input [(ngModel)]="certificado.fator_chocker" type="text" class="form-control w-100"
+                  placeholder="0 {{'INDEX.toneladas' | translate}}" readonly="true" name="fator_chocker"
+                  id="fator_chocker" value="certificado.fator_chocker"></td>
+            </tr>
+          </tbody>
+        </table><br>
+        <h4>{{'INDEX.cuidados' | translate}} <strong>{{'INDEX.utilizacao-2' | translate}}</strong></h4>
+        <div class="cuidados pb-4 pt-3">
+          <p class="mb-0 pb-0">{{'INDEX.texto-1' | translate}} <strong>{{'INDEX.carga-trabalho' | translate}}</strong>
+          </p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-2' | translate}} <strong>{{'INDEX.luvas-protecao' | translate}}</strong>
+          </p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-3' | translate}} <strong>{{'INDEX.cintas-torcidas' | translate}}</strong>
+          </p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-4' | translate}} <strong>{{'INDEX.forma-utilizacao' | translate}}</strong>
+            {{'INDEX.texto-10' | translate}}</p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-5' | translate}} <strong>{{'INDEX.emendas-nos' | translate}}</strong></p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-6' | translate}}
+            <strong>{{'INDEX.produtos-quimicos' | translate}}</strong></p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-7' | translate}}
+            <strong>{{'INDEX.informacoes-importantes' | translate}}</strong></p>
+          <p class="mb-0 pb-0"><strong>{{'INDEX.inspecione' | translate}}</strong> {{'INDEX.texto-8' | translate}}</p>
+          <p class="mb-0 pb-0">{{'INDEX.texto-9' | translate}} <strong>{{'INDEX.avaria-trama' | translate}}</strong>
+            {{'INDEX.texto-11' | translate}}</p>
+        </div><br>
+        <p><strong>{{'INDEX.responsavel-tecnico' | translate}}</strong> {{'INDEX.responsavel' | translate}} -
+          <strong>{{'INDEX.crea' | translate}}</strong></p><br>
+        <button type="submit" class="btn btn-gera w-25">GERAR CERTIFICADO</button>
+      </form>
+    </div>
+  </div>
+</div>

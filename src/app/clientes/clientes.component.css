@@ -1,0 +1,31 @@
+.btn-outline-success{
+    border-radius: 30px;
+}
+.titulo-modal{
+    color: #fff;
+    font-size: 18px;
+}
+input , input:focus{
+    background: transparent;
+    border-radius: 30px;
+    color: #fff;
+    height: 43px;
+}
+.fa-times{
+    color: #fff;
+}
+.icon-excluir{
+  cursor: pointer;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #fff;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #fff;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+  }

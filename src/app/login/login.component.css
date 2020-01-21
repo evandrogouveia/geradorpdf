@@ -1,0 +1,51 @@
+.background-login{
+    width: 100%;
+    height: 100%;
+    display: table;
+    background-image: linear-gradient(245deg,#fab598,#8787c7 55%);
+}
+
+p{
+    color: #fff;
+    font-size: 18px;
+}
+
+.btn-cliente{
+    background: #13419F;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 30px;
+    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.55);
+}
+.btn-cliente:hover{
+    background:rgb(1, 46, 136);  
+}
+hr{
+    background: #fff;
+}
+.fa-sign-in-alt{
+    position: relative;
+    top: 2px;
+    font-size: 20px;
+    margin-left: 10px;
+}
+input , input:focus{
+    background: transparent;
+    border-radius: 30px;
+    color: #fff;
+    height: 43px;
+}
+
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #fff;
+  }
+  ::-moz-placeholder { /* Firefox 19+ */
+    color: #fff;
+  }
+  :-ms-input-placeholder { /* IE 10+ */
+    color: #fff;
+  }
+  :-moz-placeholder { /* Firefox 18- */
+    color: #fff;
+  }

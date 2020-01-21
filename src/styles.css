@@ -1,0 +1,57 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+body, html{
+    font-family: 'Open Sans', sans-serif;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+.modal-content{
+    background-image: linear-gradient(245deg,#fab598,#8787c7 55%);
+    border-radius:10px;
+    margin-top: 46%;
+}
+.ng-sidebar{
+    background-image: linear-gradient(245deg,#fab598,#6262c2 85%);
+    z-index: 1040 !important;
+    width: 250px;
+}
+.ng-sidebar__content{
+    background: #f1f1f1;
+    padding: 30px !important;
+    padding-left: 280px !important;
+    transform: inherit !important;
+}
+.content-border{
+    border: 2px solid #fff;
+    border-radius: 10px;
+    padding: 15px;
+}
+.table-bordered tr td,
+.table-bordered tr th {
+    border: 2px solid #fff;
+}
+.navbar-custom {
+    background: #e9ecef;
+    border: 2px solid #fff;
+    border-bottom: 0;
+}
+.btn-login{
+    background: #FF7113;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 30px;
+    box-shadow: 0px 1px 6px 0px rgba(0,0,0,0.55);
+}
+.btn-login:hover{
+    color: #fff;
+    background:#fa4f06;  
+}
+input:focus,
+select:focus, textarea:focus{
+    box-shadow: none !important;
+    border: 1px solid #FF7113 !important;
+
+}

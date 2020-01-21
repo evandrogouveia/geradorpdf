@@ -1,0 +1,50 @@
+<div class="content-border text-center">
+    <nav class="navbar navbar-light navbar-custom">
+        <a class="navbar-brand">Clientes</a>
+        <form class="form-inline">
+          <button (click)="openModal(template)" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-plus"></i> Novo Cliente </button>
+        </form>
+      </nav>
+
+  <table class="table table-bordered text-center">
+    <thead>
+      <tr>
+        <th scope="col" style="padding: 5px;">CNPJ</th>
+        <th scope="col" style="padding: 5px;">Nome</th>
+        <th scope="col" style="padding: 5px;">Excluir</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of clientes">
+        <td class="p-1">{{c.cnpj}}</td>
+        <td class="p-1">{{c.nome}}</td>
+        <td class="p-1"><span class="icon-excluir" (click)="excluirCliente(c.id)"><i class="far fa-trash-alt text-danger" ></i></span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!------------------ MODAL CLIENTE------------------------>
+<ng-template #template>
+  <div class="modal-body text-center">
+    <button type="button" class="close close-modal pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="pl-4 pr-4 pb-4 pt-0 ml-5 mr-5 mob-0">
+      <p class="titulo-modal mt-2 mb-0 pb-0">Novo Cliente</p>
+
+      <form class="mt-4">
+        <div class="form-group">
+          <input [(ngModel)]="cliente.cnpj" type="text" class="form-control" id="cnpj" name="cnpj"
+            placeholder="CNPJ">
+        </div>
+        <div class="form-group">
+          <input [(ngModel)]="cliente.nome" type="text" class="form-control" id="nome" name="nome"
+            placeholder="Nome">
+        </div>
+        <button type="submit" (click)="adicionaCliente()" class="btn btn-login w-100 p-2">SALVAR</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+ 

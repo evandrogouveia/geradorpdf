@@ -1,0 +1,28 @@
+textarea {
+    resize: none;
+}
+input,
+select{
+    border-radius: 30px;
+    height: 45px;
+}
+textarea{
+    border-radius: 30px; 
+}
+
+.btn-gera{
+    background: #FF7113;
+    color: #fff;
+    font-size: 15px;
+    border-radius: 30px;
+    height: 45px;
+}
+.btn-gera:hover{
+    background:#fa4f06;  
+}
+.cuidados{
+    background: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 30px;
+    color:rgb(84, 84, 84);;
+}
